@@ -6,7 +6,9 @@ python:
 os:
   - linux
   - osx
+before_install:
+  - source bin/activate
 install:
   - pip install -r requirements.txt
 script:
- - pytest
+  - pytest
