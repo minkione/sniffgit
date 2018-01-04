@@ -1,0 +1,12 @@
+TODO
+__pycache__/
+.cache
+bin/
+include/
+lib/
+pip-selfcheck.json
+*.cfg
+*.pyc
+*.egg*
+**/.DS_Store
+*.cfg
