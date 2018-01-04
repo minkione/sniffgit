@@ -1,6 +1,6 @@
-# sniffgit
 [![Build Status](https://travis-ci.org/Liandy213/sniffgit.svg?branch=master)](https://travis-ci.org/Liandy213/sniffgit)
-We've heard stories about programmers who forgot to remove their hardcoded API
+# sniffgit
+We might have heard stories about programmers who forgot to remove their hardcoded API
 key before committing to a repository, and some others have accidentally
 committed their .crt file (in which they really shouldn't).
 
