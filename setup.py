@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='sniffgit',
     version='1.0',
-    description='Keeping those private files and information private.',
+    description='Find sensitive information and files in a git repository.',
     author='Liandy Hardikoesoemo',
     author_email='liandy.hardikoesoemo@gmail.com',
     packages=['sniffgit'],
