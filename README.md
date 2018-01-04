@@ -13,8 +13,9 @@ committed their .crt file (in which they really shouldn't).
 Simply run `sniffgit` on your repository after installing it!
 
 ### Installation
-Python 3
-`pip3 install sniffgit`
+```python
+pip3 install sniffgit
+```
 
 ### Usage
 Recommended: go to the root of your root project and run the following command in terminal:
