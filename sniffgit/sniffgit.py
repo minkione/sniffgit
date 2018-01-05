@@ -88,6 +88,8 @@ def print_result(safe_sensitive_files, exposed_sensitive_files, sensitive_lines)
     print(Style.RESET_ALL)
 
     print(str(len(exposed_sensitive_files)) + " Exposed sensitive files:")
+    if len(exposed_sensitive_files) > 0:
+        print("(Fix: add the file(s) to .gitignore or store outside of the repo.)")
     for file_path in exposed_sensitive_files:
         print(Fore.RED + file_path)
 
