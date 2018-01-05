@@ -4,6 +4,7 @@ import fnmatch
 from colorama import Fore, Back, Style, init
 from collections import deque
 import argparse
+import codecs
 
 SENSITIVE_FILE_PATTERN = set(["*.crt", ".bash_history", "*.pfx", "*.csr", "*.p12", "id_dsa", "*.der", ".htaccess", ".htpasswd", "*.jks", "wp-config.php", "*.pub", "web.config", "*.cert", "*.key", "id_rsa", "*.pem"])
 SENSITIVE_KEYWORD = set(["key", "pass", "credentials", "AWS_SESSION_TOKEN", "credential", "username", "user", "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "token", "password", "pw", "pwd", "email", "api_key", "AWS_KEY"])
@@ -76,7 +77,7 @@ def file_is_exposed(path_to_file, gitignored_files):
     return False
 
 '''
-Print out the safe sensitive files, exposed sensitive files, and sensitive lines.
+Print out the safe (gitignored) sensitive files, exposed sensitive files, and sensitive lines.
 '''
 def print_result(safe_sensitive_files, exposed_sensitive_files, sensitive_lines):
     print("-------------RESULT-------------")
@@ -116,7 +117,7 @@ def get_sensitive_lines(file_name, path_to_file, gitignored_files):
     sen_lines = []
     if (not os.path.isdir(path_to_file)) and file_name_not_ignored(file_name):
         if path_to_file not in gitignored_files:
-            with open(path_to_file, errors="ignore") as f:
+            with codecs.open(path_to_file, 'r', errors = 'ignore') as f:
                 line = f.readline()
                 line_no = 1
                 while line:
