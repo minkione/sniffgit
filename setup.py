@@ -6,6 +6,7 @@ setup(
     description='Find sensitive information and files in a git repository.',
     author='Liandy Hardikoesoemo',
     author_email='liandy.hardikoesoemo@gmail.com',
+    url='https://github.com/Liandy213/sniffgit',
     packages=['sniffgit'],
     license=['MIT License'],
     entry_points = {
@@ -21,6 +22,8 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Topic :: Software Development',
         'Topic :: Software Development :: Build Tools',
         'Topic :: Software Development :: Debuggers',

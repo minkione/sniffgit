@@ -10,3 +10,5 @@ pip-selfcheck.json
 *.egg*
 **/.DS_Store
 *.cfg
+!setup.cfg
+dist
