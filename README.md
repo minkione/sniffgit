@@ -1,7 +1,10 @@
 [![Build Status](https://travis-ci.org/Liandy213/sniffgit.svg?branch=master)](https://travis-ci.org/Liandy213/sniffgit)
 # sniffgit
-We might have heard stories about programmers who forgot to remove their hardcoded API
-key before committing to a repository, and some others have accidentally
+![Alt Text](https://media.giphy.com/media/l0HU9Hpvt6XVHrIAw/giphy.gif)
+
+
+We might have heard stories about programmers who forgot to remove their hardcoded
+secret key before committing to a public repository, and some others have accidentally
 committed their .crt file (in which they really shouldn't).
 
 `sniffgit` solves that problem:
