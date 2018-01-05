@@ -22,14 +22,20 @@ pip3 install sniffgit   # Python 3
 ```
 
 ### Usage
-Recommended: go to the root of your root project and run the following command in terminal:
-`sniffgit`
+***Recommended***: go to the root of your root project and run the following command in terminal:
+```
+sniffgit
+```
 
 To specify a particular directory to start the "scan", use the `--root` argument:
-`sniffgit --root path/to/another_dir`
+```
+sniffgit --root path/to/another_dir
+```
 
 To print out the list of processed directories at the end, use the `--paths` flag:
-`sniffgit --paths`
+```
+sniffgit --paths
+```
 
 ### FAQ
 #### How does `sniffgit` work?
