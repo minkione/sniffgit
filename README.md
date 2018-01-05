@@ -17,7 +17,8 @@ Simply run `sniffgit` on your repository after installing it!
 
 ### Installation
 ```python
-pip3 install sniffgit
+pip install sniffgit    # Python 2
+pip3 install sniffgit   # Python 3
 ```
 
 ### Usage
