@@ -77,12 +77,12 @@ def file_is_exposed(path_to_file, gitignored_files):
     return False
 
 '''
-Print out the safe (gitignored) sensitive files, exposed sensitive files, and sensitive lines.
+Print out the safe sensitive files, exposed sensitive files, and sensitive lines.
 '''
 def print_result(safe_sensitive_files, exposed_sensitive_files, sensitive_lines):
     print("-------------RESULT-------------")
     print(Fore.YELLOW + "Sensitive files found:" + Style.RESET_ALL)
-    print(str(len(safe_sensitive_files)) + " Safe sensitive files:")
+    print(str(len(safe_sensitive_files)) + " Safe (gitignored) sensitive files:")
     for file_path in safe_sensitive_files:
         print(Fore.GREEN + file_path)
 
