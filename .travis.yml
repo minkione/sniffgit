@@ -1,12 +1,17 @@
-language: generic
-python:
-  - "2.7"
-  - "3.4"
-  - "3.5"
-  - "3.6"
-os:
-  - linux
-  - osx
+matrix:
+  include:
+    - os: osx
+      language: generic
+      before_install:
+        - brew update
+        - brew install python3
+    - os: linux
+      language: python
+      python:
+        - "2.7"
+        - "3.4"
+        - "3.5"
+        - "3.6"
 install:
   - pip install --upgrade pip
   - pip install -r requirements.txt
