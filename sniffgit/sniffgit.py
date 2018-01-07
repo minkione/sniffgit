@@ -1,4 +1,4 @@
-os.sepimport os
+import os
 import sys
 import fnmatch
 from colorama import Fore, Back, Style, init
