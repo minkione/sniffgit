@@ -43,7 +43,7 @@ def line_is_not_comment(line):
 Get the content of a gitignore file.
 '''
 def get_gitignore_content(curr_path, result_set):
-    gitignore_path = curr_path + "/.gitignore"
+    gitignore_path = curr_path + os.sep + ".gitignore"
 
     if os.path.exists(gitignore_path):  # gitignore exists
         with open(gitignore_path) as all_lines:

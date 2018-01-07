@@ -1,4 +1,5 @@
 from sniffgit import sniffgit
+import os
 
 def test_file_is_sensitive_positive():
     assert sniffgit.file_is_sensitive("something.cert") == True
@@ -34,14 +35,14 @@ def test_file_is_sensitive_negative():
 def test_sanitize_gitignore_content():
     assert sniffgit.sanitize_gitignore_content("hello.txt") == "hello.txt"
     assert sniffgit.sanitize_gitignore_content("hello.txt\n") == "hello.txt"
-    assert sniffgit.sanitize_gitignore_content("/hello.txt") == "hello.txt"
-    assert sniffgit.sanitize_gitignore_content("hello/") == "hello"
-    assert sniffgit.sanitize_gitignore_content("/hello/") == "hello"
-    assert sniffgit.sanitize_gitignore_content("/hello/\n") == "hello"
-    assert sniffgit.sanitize_gitignore_content("\n/hello/\n") == "hello"
-    assert sniffgit.sanitize_gitignore_content("/hello/\n\n") == "hello"
-    assert sniffgit.sanitize_gitignore_content("\n\n/hello/") == "hello"
-    assert sniffgit.sanitize_gitignore_content("\n\n/hello/\n\n") == "hello"
+    assert sniffgit.sanitize_gitignore_content(os.sep + "hello.txt") == "hello.txt"
+    assert sniffgit.sanitize_gitignore_content("hello" + os.sep) == "hello"
+    assert sniffgit.sanitize_gitignore_content(os.sep + "hello" + os.sep) == "hello"
+    assert sniffgit.sanitize_gitignore_content(os.sep + "hello" + os.sep + "\n") == "hello"
+    assert sniffgit.sanitize_gitignore_content("\n" + os.sep + "hello" + os.sep + "\n") == "hello"
+    assert sniffgit.sanitize_gitignore_content(os.sep + "hello" + os.sep + "\n\n") == "hello"
+    assert sniffgit.sanitize_gitignore_content("\n\n" + os.sep + "hello" + os.sep) == "hello"
+    assert sniffgit.sanitize_gitignore_content("\n\n" + os.sep + "hello" + os.sep + "\n\n") == "hello"
 
 def create_gitignore_list(curr_path, gitignore_path, file_names):
     whole_content = ""
@@ -54,12 +55,12 @@ def test_get_git_ignore_content_positive(tmpdir):
     root = tmpdir.mkdir("temp")
     gitignore_path = root.join(".gitignore")
     assert len(tmpdir.listdir()) == 1 # gitignore has been created.
-    gitignore_content = ["/id_rsa", "id_dsa/", "/abc.java/", "/**/abc.go", "de?.java"]
+    gitignore_content = [os.sep + "id_rsa", "id_dsa" + os.sep, os.sep + "abc.java" + os.sep, os.sep + "**" + os.sep + "abc.go", "de?.java"]
     create_gitignore_list(root, gitignore_path, gitignore_content)
     gitignored_files_detected = set()
     gitignored_files_detected = sniffgit.get_gitignore_content(str(root), gitignored_files_detected)
 
-    git_ignored_files_expected = [str(root) + "/" + sniffgit.sanitize_gitignore_content(name) for name in gitignore_content]
+    git_ignored_files_expected = [str(root) + os.sep + sniffgit.sanitize_gitignore_content(name) for name in gitignore_content]
     for path in gitignored_files_detected:
         print(path)
     for path in git_ignored_files_expected:
@@ -69,12 +70,12 @@ def test_get_git_ignore_content_negative(tmpdir):
     root = tmpdir.mkdir("temp")
     gitignore_path = root.join(".gitignore")
     assert len(tmpdir.listdir()) == 1 # gitignore has been created.
-    gitignore_content = ["!*.py", "!/abc.go", "!def.java", "!**.rb"]
+    gitignore_content = ["!*.py", "!" + os.sep + "abc.go", "!def.java", "!**.rb"]
     create_gitignore_list(root, gitignore_path, gitignore_content)
     gitignored_files_detected = set()
     gitignored_files_detected = sniffgit.get_gitignore_content(str(root), gitignored_files_detected)
 
-    git_ignored_files_expected = [str(root) + "/" + sniffgit.sanitize_gitignore_content(name) for name in gitignore_content]
+    git_ignored_files_expected = [str(root) + os.sep + sniffgit.sanitize_gitignore_content(name) for name in gitignore_content]
     for path in gitignored_files_detected:
         print(path)
     for path in git_ignored_files_expected:
@@ -93,14 +94,14 @@ def test_file_is_exposed(tmpdir):
     root = tmpdir.mkdir("temp")
     gitignore_path = root.join(".gitignore")
     assert len(tmpdir.listdir()) == 1 # gitignore has been created.
-    gitignore_content = ["/id_rsa", "*.pfx", "/abc/*.py", "/**/abc.go", "de?.java"]
+    gitignore_content = [os.sep + "id_rsa", "*.pfx", os.sep + "abc" + os.sep + "*.py", os.sep + "**" + os.sep + "abc.go", "de?.java"]
 
     create_gitignore_list(root, gitignore_path, gitignore_content)
     gitignored_files = set()
     gitignored_files = sniffgit.get_gitignore_content(str(root), gitignored_files)
 
-    test_file_negative = ["/id_rsa", "/hello.pfx", "/123.pfx", "/abc/a.py", "/abc/b.py",
-                          "/hello/abc.go", "/bonjour/abc.go", "/dex.java", "/dey.java"]
+    test_file_negative = [os.sep + "id_rsa", os.sep + "hello.pfx", os.sep + "123.pfx", os.sep + "abc" + os.sep + "a.py", os.sep + "abc" + os.sep + "b.py",
+                          os.sep + "hello" + os.sep + "abc.go", os.sep + "bonjour" + os.sep +"abc.go", os.sep + "dex.java", os.sep + "dey.java"]
 
     for file_relative_path in test_file_negative:
         path_to_file = str(root) + file_relative_path
@@ -110,14 +111,14 @@ def test_file_is_exposed(tmpdir):
     root = tmpdir.mkdir("temp")
     gitignore_path = root.join(".gitignore")
     assert len(tmpdir.listdir()) == 1 # gitignore has been created.
-    gitignore_content = ["/id_rsa", "*.pfx", "/abc/*.py", "/**/abc.go", "de?.java"]
+    gitignore_content = [os.sep + "id_rsa", "*.pfx", os.sep + "abc" + os.sep + "*.py", os.sep + "**" + os.sep + "abc.go", "de?.java"]
 
     create_gitignore_list(root, gitignore_path, gitignore_content)
     gitignored_files = set()
     gitignored_files = sniffgit.get_gitignore_content(str(root), gitignored_files)
 
-    test_file_negative = ["/id_dsa", "/abc.pdf", "/def.py", "/def/a.py", "/def/b.py",
-                          "/hello/abc.java", "/dexa.java", "/deya.java"]
+    test_file_negative = [os.sep + "id_dsa", os.sep + "abc.pdf", os.sep + "def.py", os.sep + "def" + os.sep + "a.py", os.sep + "def" + os.sep + "b.py",
+                          os.sep + "hello" + os.sep + "abc.java", os.sep + "dexa.java", os.sep + "deya.java"]
 
     for file_relative_path in test_file_negative:
         path_to_file = str(root) + file_relative_path
