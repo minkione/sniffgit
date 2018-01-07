@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Liandy213/sniffgit.svg?branch=master)](https://travis-ci.org/Liandy213/sniffgit)
 # sniffgit
-![Alt Text](http://g.recordit.co/VPDSEKgNlW.gif)
+![Alt Text](http://g.recordit.co/xZNOyfrogp.gif)
 
 
 We might have heard stories about programmers who forgot to remove their hardcoded
@@ -17,22 +17,29 @@ Simply run `sniffgit` on your repository after installing it!
 
 ### Installation
 ```python
-pip3 install sniffgit
+pip install sniffgit    # Python 2
+pip3 install sniffgit   # Python 3
 ```
 
 ### Usage
-Recommended: go to the root of your root project and run the following command in terminal:
-`sniffgit`
+***Recommended***: go to the root of your root project and run the following command in terminal:
+```
+sniffgit
+```
 
 To specify a particular directory to start the "scan", use the `--root` argument:
-`sniffgit --root path/to/another_dir`
+```
+sniffgit --root path/to/another_dir
+```
 
 To print out the list of processed directories at the end, use the `--paths` flag:
-`sniffgit --paths`
+```
+sniffgit --paths
+```
 
 ### FAQ
 #### How does `sniffgit` work?
-`sniffgit` starts at a directory, called root, and see if there are any sensitive
+    `sniffgit` starts at a directory, called root, and see if there are any sensitive
 files that have not been **gitignored**. `sniffgit` then proceed to check all of the
 child directories (and other directories below it) of the root.
 
