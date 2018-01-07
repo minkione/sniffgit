@@ -1,4 +1,4 @@
-import os
+os.sepimport os
 import sys
 import fnmatch
 from colorama import Fore, Back, Style, init
@@ -31,7 +31,7 @@ def file_is_sensitive(file_name):
 Remove any slashes at both ends of a gitignore entry.
 '''
 def sanitize_gitignore_content(file_name):
-    return file_name.strip("\n").lstrip("/").rstrip("/")
+    return file_name.strip("\n").lstrip(os.sep).rstrip(os.sep)
 
 '''
 Determine if a line in a gitignore is a comment
@@ -52,7 +52,7 @@ def get_gitignore_content(curr_path, result_set):
                 if line_is_not_comment(line):
                     if "!" not in line:
                         file_name = line.split("#")[0]  # Separate file name from any comments
-                        file_path = curr_path + "/" + sanitize_gitignore_content(file_name)
+                        file_path = curr_path + os.sep + sanitize_gitignore_content(file_name)
                         result_set.add(file_path)
 
     return result_set
@@ -165,7 +165,7 @@ def main():
 
         for child in curr_path_children:
             if child not in IGNORED_FILE:
-                child_path = curr_path + "/" + child
+                child_path = curr_path + os.sep + child
                 if os.path.isdir(child_path):
                     q.append(child_path)
 
@@ -173,7 +173,7 @@ def main():
 
         file_list = os.listdir(curr_path)   # file_list is the children of curr_path
         for file_name in file_list:
-            path_to_file = curr_path + "/" + file_name
+            path_to_file = curr_path + os.sep + file_name
             if file_is_sensitive(file_name):
                 if file_is_exposed(path_to_file, gitignored_files):
                     exposed_sensitive_files.add(path_to_file)
