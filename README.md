@@ -45,7 +45,7 @@ child directories (and other directories below it) of the root.
 
 `sniffgit` also checks files with texts (.py, .go, .txt, etc) and see if there are
 any potential sensitive lines (e.g. API_KEY, email, AWS_ACCESS_KEY_ID, etc) in it.
-`sniffgit` will report any potential sensitive lines that are exposed (i.e. located  
+`sniffgit` will report any potential sensitive lines that are exposed (i.e. located
 in a non-gitignored file) in the result.
 
 #### How do you define "sensitive files" and "sensitive lines"?
