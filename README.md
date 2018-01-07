@@ -22,7 +22,7 @@ pip3 install sniffgit   # Python 3
 ```
 
 ### Usage
-***Recommended***: go to the root of your root project and run the following command in terminal:
+***Recommended***: go to the root of your project and run the following command in terminal:
 ```
 sniffgit
 ```
@@ -39,13 +39,14 @@ sniffgit --paths
 
 ### FAQ
 #### How does `sniffgit` work?
-    `sniffgit` starts at a directory, called root, and see if there are any sensitive
+`sniffgit` starts at a directory, called root, and see if there are any sensitive
 files that have not been **gitignored**. `sniffgit` then proceed to check all of the
 child directories (and other directories below it) of the root.
 
-`sniffgit` also checks files with texts (.py, .go, .txt, etc) and see if there's
-any potential sensitive lines in it. `sniffgit` will report any potential sensitive
-lines that are exposed in the result.
+`sniffgit` also checks files with texts (.py, .go, .txt, etc) and see if there are
+any potential sensitive lines (e.g. API_KEY, email, AWS_ACCESS_KEY_ID, etc) in it.
+`sniffgit` will report any potential sensitive lines that are exposed (i.e. located  
+in a non-gitignored file) in the result.
 
 #### How do you define "sensitive files" and "sensitive lines"?
 Some files, such as `id_rsa`, `*.crt`, `*jks`, are known to be something that
