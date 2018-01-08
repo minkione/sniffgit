@@ -5,10 +5,11 @@ from colorama import Fore, Back, Style, init
 from collections import deque
 import argparse
 import codecs
+import time
 
 SENSITIVE_FILE_PATTERN = set(["*.crt", ".bash_history", "*.pfx", "*.csr", "*.p12", "id_dsa", "*.der", ".htaccess", ".htpasswd", "*.jks", "wp-config.php", "*.pub", "web.config", "*.cert", "*.key", "id_rsa", "*.pem"])
 SENSITIVE_KEYWORD = set(["secret_key", "pass", "credentials", "AWS_SESSION_TOKEN", "credential", "username", "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "token", "password", "pw ", "pwd", "email", "api_key", "AWS_KEY"])
-IGNORED_FILENAME_PATTERN = set(["*.egg-info", "Gemfile","site-packages", "bin", "node_modules", "bower_components", "tmp", "__pycache__", "db", ".git"])
+IGNORED_FILENAME_PATTERN = set(["*.lock", "*.egg-info", "Gemfile","site-packages", "bin", "node_modules", "bower_components", "tmp", "__pycache__", "db", ".git"])
 IGNORED_TEXTFILE_PATTERN = set(["*.log", "*.pyc", "test_sniffgit.py", "sensitive_file_patterns.yaml", ".DS_Store", "package-lock.json", ".gitignore", "TODO", "sensitive_keywords.yaml", "sniffgit.py", "README.md"])
 
 class SensitiveLine:
@@ -83,6 +84,7 @@ def print_result(safe_sensitive_files, exposed_sensitive_files, sensitive_lines,
     print("-------------RESULT-------------")
     print(Fore.YELLOW + "Sensitive files found:" + Style.RESET_ALL)
     print(str(len(safe_sensitive_files)) + " Safe (gitignored) sensitive files:")
+    print("(Note: tracked file(s) might still be in the repo despite being gitgnored.)")
     for file_path in safe_sensitive_files:
         print(Fore.GREEN + file_path)
 
@@ -132,7 +134,7 @@ def get_sensitive_lines(file_name, path_to_file, gitignored_files, no_lines):
             with codecs.open(path_to_file,'r' , encoding='utf-8', errors = 'ignore') as f:
                 line = f.readline()
                 line_no = 1
-                print(path_to_file)
+
                 while line:
                     line_lowercase = line.lower()
                     for sensitive_word in sorted(SENSITIVE_KEYWORD):
