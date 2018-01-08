@@ -27,7 +27,7 @@ pip3 install sniffgit   # Python 3
 sniffgit
 ```
 
-To skip line analysis, use the `--no-lines`. As of version 1.0.3 `--no-lines` is recommended for larger project due to the ***high number of false positive results***. You can always help us by improving the way
+To skip line analysis, use the `--no-lines`. As of version 1.0.3 `--no-lines` is **recommended** for larger project due to the ***high number of false positive results***. You can always help us by improving the way
 sniffgit determine sensitive lines / information :)!
 ```
 sniffgit --no-lines
