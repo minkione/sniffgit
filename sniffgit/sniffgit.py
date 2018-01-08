@@ -185,9 +185,12 @@ def main():
         gitignored_files = get_gitignore_content(curr_path, gitignored_files)
 
         file_list = os.listdir(curr_path)   # file_list is the children of curr_path
+
         for file_name in file_list:
             path_to_file = curr_path + os.sep + file_name
+
             if file_is_sensitive(file_name):
+
                 if file_is_exposed(path_to_file, gitignored_files):
                     exposed_sensitive_files.add(path_to_file)
                 else:
@@ -199,6 +202,7 @@ def main():
 
             if sen_lines is not None:
                 sensitive_lines[path_to_file] = sen_lines
+
         if args.paths:
             path_processed_list.append(path_to_file)
         path_processed += 1
