@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Liandy213/sniffgit.svg?branch=master)](https://travis-ci.org/Liandy213/sniffgit)
 # sniffgit
-![Alt Text](http://g.recordit.co/xZNOyfrogp.gif)
+![Alt Text](http://g.recordit.co/Z11yk3wzr9.gif)
 
 
 We might have heard stories about programmers who forgot to remove their hardcoded
