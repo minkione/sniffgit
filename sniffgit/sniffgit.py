@@ -150,9 +150,10 @@ def get_sensitive_lines(file_name, path_to_file, gitignored_files, no_lines):
 
 def main():
     parser = argparse.ArgumentParser(description='Find potential sensitive files and lines in your repository.')
-    parser.add_argument('--root', default=".", help='The root of the diretory tree that you want to scan.')
+    parser.add_argument("--root", default=".", help='The root of the diretory tree that you want to scan.')
     parser.add_argument("--paths", action='store_true', help="Show a list of processed paths in the result.")
     parser.add_argument("--no-lines", action='store_true', help="Do not show potential sensitive lines in result.")
+
     args = parser.parse_args()
     if args.root == ".":
         print("Scan starting at: " + args.root + " (current directory)")
@@ -214,5 +215,10 @@ def main():
             print("- " + path)
     print("Job done!")
     print("DISCLAIMER: The result might not be completely accurate due to false positive result, false negative result, etc.")
+
+    if len(exposed_sensitive_files) == 0 and len(sensitive_lines.keys() == 0):
+        sys.exit(0)
+    else:
+        sys.exit(1)
 
 if __name__ == "__main__": main()
