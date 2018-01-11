@@ -15,14 +15,14 @@ committed their .crt file (in which they really shouldn't).
 
 Simply run `sniffgit` on your repository after installing it!
 
-### Installation
+## Installation
 ```python
 pip install sniffgit    # Python 2
 pip3 install sniffgit   # Python 3
 ```
 
-### Usage
-***Recommended***: go to the root of your project and run the following command in terminal:
+## Usage
+***Recommended***: go to the root of your root project and run the following command in terminal:
 ```
 sniffgit
 ```
@@ -43,8 +43,8 @@ To print out the list of processed directories at the end, use the `--paths` fla
 sniffgit --paths
 ```
 
-### FAQ
-#### How does `sniffgit` work?
+## FAQ
+### How does `sniffgit` work?
 `sniffgit` starts at a directory, called root, and see if there are any sensitive
 files that have not been **gitignored**. `sniffgit` then proceed to check all of the
 child directories (and other directories below it) of the root.
@@ -54,7 +54,7 @@ any potential sensitive lines (e.g. API_KEY, email, AWS_ACCESS_KEY_ID, etc) in i
 `sniffgit` will report any potential sensitive lines that are exposed (i.e. located
 in a non-gitignored file) in the result.
 
-#### How do you define "sensitive files" and "sensitive lines"?
+### How do you define "sensitive files" and "sensitive lines"?
 Some files, such as `id_rsa`, `*.crt`, `*jks`, are known to be something that
 needs to be kept secret. Hence they're considered as **"sensitive files"**.
 
@@ -64,7 +64,7 @@ contain private data. Hence they're considered as **"sensitive lines"**.
 There's **a lot more** files and keywords that can be included in the list, so
 it would be awesome if you could expand this project :)!
 
-#### How do you define "safe sensitive files" and "safe sensitive lines"?
+### How do you define "safe sensitive files" and "safe sensitive lines"?
 ***"safe sensitive files"*** are sensitive files that have been gitignored,
 hence it won't (most likely) appear in the repository for wandering eyes to see.
 
@@ -72,6 +72,9 @@ Meanwhile, ***"safe sensitive lines"*** are sensitive lines that are contained
 in a file that have been gititgnored, hence they are not publicly available on
 the repository.
 
+## Wishlist
 
+- A more accurate sensitive line analysis to reduce false positive results.
+- An option to deep to previous commits instead of only scanning the HEAD repo.
 
 DISCLAIMER: The result of this program might not be completely accurate due to false positive, false negative result, etc. You can improve the program by contributing to this open-source project.
