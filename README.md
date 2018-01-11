@@ -38,7 +38,7 @@ sniffgit --paths
 ```
 
 ## FAQ
-#### How does `sniffgit` work?
+### How does `sniffgit` work?
     `sniffgit` starts at a directory, called root, and see if there are any sensitive
 files that have not been **gitignored**. `sniffgit` then proceed to check all of the
 child directories (and other directories below it) of the root.
@@ -47,7 +47,7 @@ child directories (and other directories below it) of the root.
 any potential sensitive lines in it. `sniffgit` will report any potential sensitive
 lines that are exposed in the result.
 
-#### How do you define "sensitive files" and "sensitive lines"?
+### How do you define "sensitive files" and "sensitive lines"?
 Some files, such as `id_rsa`, `*.crt`, `*jks`, are known to be something that
 needs to be kept secret. Hence they're considered as **"sensitive files"**.
 
@@ -57,7 +57,7 @@ contain private data. Hence they're considered as **"sensitive lines"**.
 There's **a lot more** files and keywords that can be included in the list, so
 it would be awesome if you could expand this project :)!
 
-#### How do you define "safe sensitive files" and "safe sensitive lines"?
+### How do you define "safe sensitive files" and "safe sensitive lines"?
 ***"safe sensitive files"*** are sensitive files that have been gitignored,
 hence it won't (most likely) appear in the repository for wandering eyes to see.
 
