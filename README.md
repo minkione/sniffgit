@@ -15,13 +15,13 @@ committed their .crt file (in which they really shouldn't).
 
 Simply run `sniffgit` on your repository after installing it!
 
-### Installation
+## Installation
 ```python
 pip install sniffgit    # Python 2
 pip3 install sniffgit   # Python 3
 ```
 
-### Usage
+## Usage
 ***Recommended***: go to the root of your root project and run the following command in terminal:
 ```
 sniffgit
@@ -37,7 +37,7 @@ To print out the list of processed directories at the end, use the `--paths` fla
 sniffgit --paths
 ```
 
-### FAQ
+## FAQ
 #### How does `sniffgit` work?
     `sniffgit` starts at a directory, called root, and see if there are any sensitive
 files that have not been **gitignored**. `sniffgit` then proceed to check all of the
@@ -65,6 +65,9 @@ Meanwhile, ***"safe sensitive lines"*** are sensitive lines that are contained
 in a file that have been gititgnored, hence they are not publicly available on
 the repository.
 
+## Wishlist
 
+- A more accurate sensitive line analysis to reduce false positive results.
+- An option to deep to previous commits instead of only scanning the HEAD repo.
 
 DISCLAIMER: The result of this program might not be completely accurate due to false positive, false negative result, etc. You can improve the program by contributing to this open-source project.
