@@ -7,7 +7,7 @@ import argparse
 import codecs
 
 SENSITIVE_FILE_PATTERN = set(["*.crt", ".bash_history", "*.pfx", "*.csr", "*.p12", "id_dsa", "*.der", ".htaccess", ".htpasswd", "*.jks", "wp-config.php", "*.pub", "web.config", "*.cert", "*.key", "id_rsa", "*.pem"])
-SENSITIVE_KEYWORD = set(["secret_key", "pass", "credentials", "AWS_SESSION_TOKEN", "credential", "username", "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "token", "password", "pw ", "pwd", "email", "api_key", "AWS_KEY"])
+SENSITIVE_KEYWORD = set(["secret_key", "SecretKey", "AccessId", "pass", "credentials", "AWS_SESSION_TOKEN", "credential", "username", "AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "token", "password", "pw ", "pwd", "email", "api_key", "AWS_KEY"])
 IGNORED_FILENAME_PATTERN = set(["*.egg-info", "Gemfile","site-packages", "bin", "node_modules", "bower_components", "tmp", "__pycache__", "db", ".git"])
 IGNORED_TEXTFILE_PATTERN = set(["*.log", "*.pyc", "test_sniffgit.py", "sensitive_file_patterns.yaml", ".DS_Store", "package-lock.json", ".gitignore", "TODO", "sensitive_keywords.yaml", "sniffgit.py", "README.md"])
 
