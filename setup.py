@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='sniffgit',
-    version='1.0.4',
+    version='1.0.5',
     description='Find sensitive information and files in a git repository.',
     author='Liandy Hardikoesoemo',
     author_email='liandy.hardikoesoemo@gmail.com',

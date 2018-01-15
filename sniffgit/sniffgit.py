@@ -218,7 +218,7 @@ def main():
     print("Job done!")
     print("DISCLAIMER: The result might not be completely accurate due to false positive result, false negative result, etc.")
 
-    if len(exposed_sensitive_files) == 0 and len(sensitive_lines.keys() == 0):
+    if len(exposed_sensitive_files) == 0 and len(sensitive_lines.keys()) == 0:
         sys.exit(0)
     else:
         sys.exit(1)
